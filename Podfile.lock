@@ -1,0 +1,26 @@
+PODS:
+  - Alamofire (4.8.0)
+  - ARCL (1.0.4)
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
+
+DEPENDENCIES:
+  - Alamofire
+  - ARCL
+  - SDWebImage (~> 4.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - ARCL
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  ARCL: 5fd2b0d7aabf91f15dbc0e8c510b25516b8a755a
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+
+PODFILE CHECKSUM: cef729a0efdb87970ef99903e4581d6387a8485c
+
+COCOAPODS: 1.6.0.beta.1
