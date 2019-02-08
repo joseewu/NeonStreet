@@ -22,11 +22,11 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>NeonStreet needs access your current location to retrieve data</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>NeonStreet needs access your current location to retrieve data</string>
 	<key>NSLocationUsageDescription</key>
+	<string>NeonStreet needs access your current location to retrieve data</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>NeonStreet needs access your current location to retrieve data</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -42,8 +42,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

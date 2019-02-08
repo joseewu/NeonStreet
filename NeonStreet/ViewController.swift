@@ -11,7 +11,8 @@ import SceneKit
 import ARKit
 import ARCL
 import CoreLocation
-class ViewController: UIViewController, ARSCNViewDelegate {
+import Metal
+class ViewController: UIViewController {
 
     @IBOutlet var sceneView: ARSCNView!
     let configuration = ARWorldTrackingConfiguration()
@@ -20,18 +21,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var currentLocation:CLLocationCoordinate2D? {
         didSet {
             if oldValue == nil {
-                let plane = SCNPlane(width: 0.4,
-                                     height: 0.4)
-                let planeNode = SCNNode(geometry: plane)
-
-                planeNode.localTranslate(by: SCNVector3(0, 0, -0.5))
-                planeNode.opacity = 1
+//                let plane = SCNPlane(width: 1,
+//                                     height: 1)
+//                 plane.materials.first?.diffuse.contents = UIColor.yellow.withAlphaComponent(1)
+//                let planeNode = SCNNode(geometry: plane)
+//
+//                planeNode.localTranslate(by: SCNVector3(0, 0, 0.5))
+//                planeNode.opacity = 1
+//                planeNode.eulerAngles.x = -.pi / 2
                 let location = CLLocation(latitude: currentLocation?.latitude ?? 0, longitude: currentLocation?.longitude ?? 0)
-                let mosquitoLocationNode = LocationSceneNode(location: location, node: planeNode)
-                sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: mosquitoLocationNode)
-                sceneView.scene.rootNode.addChildNode(mosquitoLocationNode)
+//                let mosquitoLocationNode = LocationSceneNode(location: location, node: planeNode)
+                //let nodes = creatNeonLight(atLocation: location)
+                let externalNode = SCNScene(named: "art.scnassets/sign_neon_small.scn")!.rootNode.clone()
+                //addGlowTechnique(node: externalNode, sceneView: sceneLocationView)
+                addGlowTechnique(node: externalNode, sceneView: sceneView)
+                let node = LocationSceneNode(location: location, node: externalNode)
+                sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: node)
+                //sceneView.scene.rootNode.addChildNode(nodes.1)
+                sceneView.scene.rootNode.addChildNode(externalNode)
             }
         }
+    }
+    func creatNeonLight(atLocation location:CLLocation) -> ( LocationSceneNode,SCNNode)  {
+        let externalNode = SCNScene(named: "art.scnassets/ship.scn")!.rootNode.clone()
+        let node = LocationSceneNode(location: location, node: externalNode)
+        return (node, externalNode)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,21 +61,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let scene:SCNScene = SCNScene()
         sceneView.scene = scene
         sceneLocationView.run()
-        view.addSubview(sceneLocationView)
+        //view.addSubview(sceneLocationView)
 
-    }
-    private func addLocationNote(at location:CLLocation, with rootNode:SCNNode?) {
-        guard let rootNode = rootNode else {
-            return
-        }
-        let plane = SCNPlane(width: 0.4,
-                             height: 0.4)
-        //標tag
-        let planeNode = SCNNode(geometry: plane)
-
-        planeNode.localTranslate(by: SCNVector3(0, 0, -0.5))
-        planeNode.opacity = 1
-        rootNode.addChildNode(planeNode)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -77,17 +78,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
-
-    // MARK: - ARSCNViewDelegate
-    
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
-    }
-*/
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -102,6 +92,41 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
+    }
+}
+extension ViewController {
+    public func addGlowTechnique(node:SCNNode ,sceneView:ARSCNView){
+        node.setHighlighted()
+        guard let path = Bundle.main.path(forResource: "NodeTechnique", ofType: "plist") else {return}
+        guard let dict = NSDictionary(contentsOfFile: path) as? [String:Any] else {return}
+        let technique = SCNTechnique(dictionary:dict)
+        sceneView.technique = technique
+    }
+}
+extension SCNNode {
+    func setHighlighted( _ highlighted : Bool = true, _ highlightedBitMask : Int = 2 ) {
+        categoryBitMask = highlightedBitMask
+        for child in self.childNodes {
+            child.setHighlighted()
+        }
+    }
+}
+
+extension ViewController:ARSCNViewDelegate {
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        //get location
+//        let width = CGFloat(planeAnchor.extent.x)
+//        let height = CGFloat(planeAnchor.extent.z)
+//        let plane = SCNPlane(width: width, height: height)
+//        plane.materials.first?.diffuse.contents = UIColor.yellow.withAlphaComponent(0.5)
+//        let planeNode = SCNNode(geometry: plane)
+//        let x = CGFloat(planeAnchor.center.x)
+//        let y = CGFloat(planeAnchor.center.y)
+//        let z = CGFloat(planeAnchor.center.z)
+//        planeNode.position = SCNVector3(x,y,z)
+//        planeNode.eulerAngles.x = -.pi / 2
+//        node.addChildNode(planeNode)
     }
 }
 extension ViewController:SceneLocationViewDelegate {
