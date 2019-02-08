@@ -17,7 +17,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     let configuration = ARWorldTrackingConfiguration()
     var sceneLocationView = SceneLocationView()
     var currentAltitude:CLLocationDistance = 0
-    var currentLocation:CLLocationCoordinate2D?
+    var currentLocation:CLLocationCoordinate2D? {
+        didSet {
+            if oldValue == nil {
+                let plane = SCNPlane(width: 0.4,
+                                     height: 0.4)
+                let planeNode = SCNNode(geometry: plane)
+
+                planeNode.localTranslate(by: SCNVector3(0, 0, -0.5))
+                planeNode.opacity = 1
+                let location = CLLocation(latitude: currentLocation?.latitude ?? 0, longitude: currentLocation?.longitude ?? 0)
+                let mosquitoLocationNode = LocationSceneNode(location: location, node: planeNode)
+                sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: mosquitoLocationNode)
+                sceneView.scene.rootNode.addChildNode(mosquitoLocationNode)
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,26 +43,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         sceneLocationView.locationDelegate = self
         sceneView.showsStatistics = false
-        sceneView.debugOptions = [.showFeaturePoints, .showWorldOrigin]
         // Create a new scene
         let scene:SCNScene = SCNScene()
         sceneView.scene = scene
         sceneLocationView.run()
         view.addSubview(sceneLocationView)
-
-        let plane = SCNPlane(width: 0.4,
-                             height: 0.4)
-        //標tag
-        let planeNode = SCNNode(geometry: plane)
-
-        planeNode.localTranslate(by: SCNVector3(0, 0, -0.5))
-        planeNode.opacity = 1
-        if let current = sceneLocationView.currentLocation() {
-            let mosquitoLocationNode = LocationSceneNode(location: current, node: planeNode)
-
-            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: mosquitoLocationNode)
-            sceneView.scene.rootNode.addChildNode(mosquitoLocationNode)
-        }
 
     }
     private func addLocationNote(at location:CLLocation, with rootNode:SCNNode?) {
