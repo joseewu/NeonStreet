@@ -21,6 +21,8 @@
 		EB24C043220D28A600D9EF92 /* LocationSceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB24C042220D28A500D9EF92 /* LocationSceneNode.swift */; };
 		EB4B3572220D73C00086D5FD /* NodeTechnique.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4B3570220D73BF0086D5FD /* NodeTechnique.plist */; };
 		EB4B3573220D73C00086D5FD /* NodeRender.metal in Sources */ = {isa = PBXBuildFile; fileRef = EB4B3571220D73BF0086D5FD /* NodeRender.metal */; };
+		EBAC6820221D5DED00AD6701 /* Snow.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBAC681F221D5DED00AD6701 /* Snow.sks */; };
+		EBADDAA1221EADFB00DC3265 /* ARMono.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBADDAA0221EADFB00DC3265 /* ARMono.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		EB24C042220D28A500D9EF92 /* LocationSceneNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSceneNode.swift; sourceTree = "<group>"; };
 		EB4B3570220D73BF0086D5FD /* NodeTechnique.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NodeTechnique.plist; sourceTree = "<group>"; };
 		EB4B3571220D73BF0086D5FD /* NodeRender.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = NodeRender.metal; sourceTree = "<group>"; };
+		EBAC681F221D5DED00AD6701 /* Snow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Snow.sks; sourceTree = "<group>"; };
+		EBADDAA0221EADFB00DC3265 /* ARMono.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ARMono.mp3; sourceTree = "<group>"; };
 		F236372C3A118E0A310C2B51 /* Pods_NeonStreet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeonStreet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -139,8 +143,10 @@
 				EB24C018220D19E500D9EF92 /* Main.storyboard */,
 				EB4B3571220D73BF0086D5FD /* NodeRender.metal */,
 				EB4B3570220D73BF0086D5FD /* NodeTechnique.plist */,
+				EBAC681F221D5DED00AD6701 /* Snow.sks */,
 				EB24C01B220D19E600D9EF92 /* Assets.xcassets */,
 				EB24C01D220D19E600D9EF92 /* LaunchScreen.storyboard */,
+				EBADDAA0221EADFB00DC3265 /* ARMono.mp3 */,
 				EB24C020220D19E600D9EF92 /* Info.plist */,
 			);
 			path = NeonStreet;
@@ -285,6 +291,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBADDAA1221EADFB00DC3265 /* ARMono.mp3 in Resources */,
+				EBAC6820221D5DED00AD6701 /* Snow.sks in Resources */,
 				EB4B3572220D73C00086D5FD /* NodeTechnique.plist in Resources */,
 				EB24C015220D19E500D9EF92 /* art.scnassets in Resources */,
 				EB24C01F220D19E600D9EF92 /* LaunchScreen.storyboard in Resources */,

@@ -21,27 +21,22 @@ class ViewController: UIViewController {
     var currentLocation:CLLocationCoordinate2D? {
         didSet {
             if oldValue == nil {
-//                let plane = SCNPlane(width: 1,
-//                                     height: 1)
-//                 plane.materials.first?.diffuse.contents = UIColor.yellow.withAlphaComponent(1)
-//                let planeNode = SCNNode(geometry: plane)
-//
-//                planeNode.localTranslate(by: SCNVector3(0, 0, 0.5))
-//                planeNode.opacity = 1
-//                planeNode.eulerAngles.x = -.pi / 2
+
                 let location = CLLocation(latitude: currentLocation?.latitude ?? 0, longitude: currentLocation?.longitude ?? 0)
-//                let mosquitoLocationNode = LocationSceneNode(location: location, node: planeNode)
-                //let nodes = creatNeonLight(atLocation: location)
                 let externalNode = SCNScene(named: "art.scnassets/sign_neon_small.scn")!.rootNode.clone()
-                //addGlowTechnique(node: externalNode, sceneView: sceneLocationView)
-                addGlowTechnique(node: externalNode, sceneView: sceneView)
+//                addGlowTechnique(node: externalNode, sceneView: sceneView)
                 let node = LocationSceneNode(location: location, node: externalNode)
+                let audioPlayer = SCNAudioPlayer(source: audioSource)
+                externalNode.addAudioPlayer(audioPlayer)
+                audioSource.volume = 0.5
+                let play = SCNAction.playAudio(audioSource, waitForCompletion: true)
+                externalNode.runAction(play)
                 sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: node)
-                //sceneView.scene.rootNode.addChildNode(nodes.1)
                 sceneView.scene.rootNode.addChildNode(externalNode)
             }
         }
     }
+    var audioSource:SCNAudioSource!
     func creatNeonLight(atLocation location:CLLocation) -> ( LocationSceneNode,SCNNode)  {
         let externalNode = SCNScene(named: "art.scnassets/ship.scn")!.rootNode.clone()
         let node = LocationSceneNode(location: location, node: externalNode)
@@ -49,16 +44,22 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        audioSource = SCNAudioSource(fileNamed: "ARMono.mp3")
+        audioSource.loops = true
+        audioSource.load()
         // Set the view's delegate
         sceneView.delegate = self
-        
+
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         sceneLocationView.locationDelegate = self
         sceneView.showsStatistics = false
         // Create a new scene
         let scene:SCNScene = SCNScene()
+        if let particelSystem = SCNParticleSystem(named: "Snow.sks", inDirectory: nil) {
+//            let node = SKEmitterNode(fileNamed: "Snow.sks")
+//            scene.rootNode.addParticleSystem(particelSystem)
+        }
         sceneView.scene = scene
         sceneLocationView.run()
         //view.addSubview(sceneLocationView)
