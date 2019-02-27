@@ -19,9 +19,10 @@
 		EB24C02A220D19E600D9EF92 /* NeonStreetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB24C029220D19E600D9EF92 /* NeonStreetTests.swift */; };
 		EB24C035220D19E600D9EF92 /* NeonStreetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB24C034220D19E600D9EF92 /* NeonStreetUITests.swift */; };
 		EB24C043220D28A600D9EF92 /* LocationSceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB24C042220D28A500D9EF92 /* LocationSceneNode.swift */; };
+		EB3D606122266445004C6A42 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3D605F22266445004C6A42 /* spark.png */; };
+		EB3D606222266445004C6A42 /* rain.scnp in Resources */ = {isa = PBXBuildFile; fileRef = EB3D606022266445004C6A42 /* rain.scnp */; };
 		EB4B3572220D73C00086D5FD /* NodeTechnique.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB4B3570220D73BF0086D5FD /* NodeTechnique.plist */; };
 		EB4B3573220D73C00086D5FD /* NodeRender.metal in Sources */ = {isa = PBXBuildFile; fileRef = EB4B3571220D73BF0086D5FD /* NodeRender.metal */; };
-		EBAC6820221D5DED00AD6701 /* Snow.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBAC681F221D5DED00AD6701 /* Snow.sks */; };
 		EBADDAA1221EADFB00DC3265 /* ARMono.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBADDAA0221EADFB00DC3265 /* ARMono.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -66,9 +67,10 @@
 		EB24C034220D19E600D9EF92 /* NeonStreetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeonStreetUITests.swift; sourceTree = "<group>"; };
 		EB24C036220D19E600D9EF92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB24C042220D28A500D9EF92 /* LocationSceneNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSceneNode.swift; sourceTree = "<group>"; };
+		EB3D605F22266445004C6A42 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		EB3D606022266445004C6A42 /* rain.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = rain.scnp; sourceTree = "<group>"; };
 		EB4B3570220D73BF0086D5FD /* NodeTechnique.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NodeTechnique.plist; sourceTree = "<group>"; };
 		EB4B3571220D73BF0086D5FD /* NodeRender.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = NodeRender.metal; sourceTree = "<group>"; };
-		EBAC681F221D5DED00AD6701 /* Snow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Snow.sks; sourceTree = "<group>"; };
 		EBADDAA0221EADFB00DC3265 /* ARMono.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ARMono.mp3; sourceTree = "<group>"; };
 		F236372C3A118E0A310C2B51 /* Pods_NeonStreet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeonStreet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -139,11 +141,12 @@
 				EB24C012220D19E500D9EF92 /* AppDelegate.swift */,
 				EB24C014220D19E500D9EF92 /* art.scnassets */,
 				EB24C016220D19E500D9EF92 /* ViewController.swift */,
+				EB3D605F22266445004C6A42 /* spark.png */,
+				EB3D606022266445004C6A42 /* rain.scnp */,
 				EB24C042220D28A500D9EF92 /* LocationSceneNode.swift */,
 				EB24C018220D19E500D9EF92 /* Main.storyboard */,
 				EB4B3571220D73BF0086D5FD /* NodeRender.metal */,
 				EB4B3570220D73BF0086D5FD /* NodeTechnique.plist */,
-				EBAC681F221D5DED00AD6701 /* Snow.sks */,
 				EB24C01B220D19E600D9EF92 /* Assets.xcassets */,
 				EB24C01D220D19E600D9EF92 /* LaunchScreen.storyboard */,
 				EBADDAA0221EADFB00DC3265 /* ARMono.mp3 */,
@@ -292,10 +295,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBADDAA1221EADFB00DC3265 /* ARMono.mp3 in Resources */,
-				EBAC6820221D5DED00AD6701 /* Snow.sks in Resources */,
 				EB4B3572220D73C00086D5FD /* NodeTechnique.plist in Resources */,
 				EB24C015220D19E500D9EF92 /* art.scnassets in Resources */,
+				EB3D606122266445004C6A42 /* spark.png in Resources */,
 				EB24C01F220D19E600D9EF92 /* LaunchScreen.storyboard in Resources */,
+				EB3D606222266445004C6A42 /* rain.scnp in Resources */,
 				EB24C01C220D19E600D9EF92 /* Assets.xcassets in Resources */,
 				EB24C01A220D19E500D9EF92 /* Main.storyboard in Resources */,
 			);

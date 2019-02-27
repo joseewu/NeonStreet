@@ -24,15 +24,22 @@ class ViewController: UIViewController {
 
                 let location = CLLocation(latitude: currentLocation?.latitude ?? 0, longitude: currentLocation?.longitude ?? 0)
                 let externalNode = SCNScene(named: "art.scnassets/sign_neon_small.scn")!.rootNode.clone()
-//                addGlowTechnique(node: externalNode, sceneView: sceneView)
+                //                addGlowTechnique(node: externalNode, sceneView: sceneView)
                 let node = LocationSceneNode(location: location, node: externalNode)
                 let audioPlayer = SCNAudioPlayer(source: audioSource)
                 externalNode.addAudioPlayer(audioPlayer)
                 audioSource.volume = 0.5
                 let play = SCNAction.playAudio(audioSource, waitForCompletion: true)
                 externalNode.runAction(play)
-                sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: node)
-                sceneView.scene.rootNode.addChildNode(externalNode)
+
+                if let particelSystem = SCNParticleSystem(named: "rain.scnp", inDirectory: nil) {
+                    particelSystem.emissionDuration = 0.5
+                    particelSystem.particleColor = UIColor.red
+                    particelSystem.particleIntensity = 500
+                    sceneView.scene.rootNode.addParticleSystem(particelSystem)
+                }
+//                sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: node)
+//                sceneView.scene.rootNode.addChildNode(externalNode)
             }
         }
     }
@@ -56,13 +63,8 @@ class ViewController: UIViewController {
         sceneView.showsStatistics = false
         // Create a new scene
         let scene:SCNScene = SCNScene()
-        if let particelSystem = SCNParticleSystem(named: "Snow.sks", inDirectory: nil) {
-//            let node = SKEmitterNode(fileNamed: "Snow.sks")
-//            scene.rootNode.addParticleSystem(particelSystem)
-        }
         sceneView.scene = scene
         sceneLocationView.run()
-        //view.addSubview(sceneLocationView)
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -117,17 +119,17 @@ extension ViewController:ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         //get location
-//        let width = CGFloat(planeAnchor.extent.x)
-//        let height = CGFloat(planeAnchor.extent.z)
-//        let plane = SCNPlane(width: width, height: height)
-//        plane.materials.first?.diffuse.contents = UIColor.yellow.withAlphaComponent(0.5)
-//        let planeNode = SCNNode(geometry: plane)
-//        let x = CGFloat(planeAnchor.center.x)
-//        let y = CGFloat(planeAnchor.center.y)
-//        let z = CGFloat(planeAnchor.center.z)
-//        planeNode.position = SCNVector3(x,y,z)
-//        planeNode.eulerAngles.x = -.pi / 2
-//        node.addChildNode(planeNode)
+        //        let width = CGFloat(planeAnchor.extent.x)
+        //        let height = CGFloat(planeAnchor.extent.z)
+        //        let plane = SCNPlane(width: width, height: height)
+        //        plane.materials.first?.diffuse.contents = UIColor.yellow.withAlphaComponent(0.5)
+        //        let planeNode = SCNNode(geometry: plane)
+        //        let x = CGFloat(planeAnchor.center.x)
+        //        let y = CGFloat(planeAnchor.center.y)
+        //        let z = CGFloat(planeAnchor.center.z)
+        //        planeNode.position = SCNVector3(x,y,z)
+        //        planeNode.eulerAngles.x = -.pi / 2
+        //        node.addChildNode(planeNode)
     }
 }
 extension ViewController:SceneLocationViewDelegate {
